@@ -106,7 +106,7 @@ func addCompleteEmbed(event types.DocuSealEvent, payload *types.DiscordMessageWe
 	var signatureImageURL string
 	for _, value := range event.Data.Values {
 		// Check if the value contains "signature" or if the signature image URL is already set
-		if strings.Contains(strings.ToLower(value.Field), "signature") || signatureImageURL != "" {
+		if strings.Contains(strings.ToLower(value.Field), "signature") && strings.Contains(value.Value, "https://") {
 			signatureImageURL = value.Value
 		}
 	}
