@@ -183,10 +183,6 @@ func addDeclineEmbed(event types.DocuSealEvent, payload *types.DiscordMessageWeb
 				Value: declinedAt,
 			},
 			{
-				Name:  "Audit Log URL",
-				Value: "[Click here](" + event.Data.AuditLogUrl + ")",
-			},
-			{
 				Name:  "Decline Reason",
 				Value: event.Data.DeclineReason,
 			},
