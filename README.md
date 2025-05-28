@@ -1,5 +1,8 @@
 # DocuSeal Discord Redirector
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/J4yTr1n1ty/DocuSeal-Discord-Redirector)](https://goreportcard.com/report/github.com/J4yTr1n1ty/DocuSeal-Discord-Redirector)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+
 A webhook server that receives DocuSeal form events and forwards them to Discord as rich embeds.
 
 ## Features
