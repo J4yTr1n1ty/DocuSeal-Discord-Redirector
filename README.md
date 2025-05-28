@@ -10,6 +10,10 @@ A webhook server that receives DocuSeal form events and forwards them to Discord
 - Includes signature images for completed forms
 - API key authentication for security
 
+## Example Discord Message
+
+![Example Discord Message](docs/example.png)
+
 ## Setup
 
 ### 1. Configuration
@@ -84,10 +88,6 @@ https://your-domain.com/incoming/your-secret-api-key-1
 - **form.started** - Yellow embed when someone starts filling a form
 - **form.completed** - Green embed when a form is completed (includes signature)
 - **form.declined** - Red embed when a form is declined
-
-## Example Discord Message
-
-![Example Discord Message](docs/example.png)
 
 ## License
 
