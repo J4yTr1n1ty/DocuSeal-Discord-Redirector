@@ -2,6 +2,7 @@ package discord
 
 import (
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -10,6 +11,7 @@ import (
 func ConvertToDiscordTimestampWithFormat(isoTimestamp, format string) (string, error) {
 	parsedTime, err := time.Parse(time.RFC3339, isoTimestamp)
 	if err != nil {
+		log.Println("Error parsing timestamp: " + err.Error())
 		return "", err
 	}
 

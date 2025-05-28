@@ -2,7 +2,6 @@ package docuseal
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -19,14 +18,14 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 
 	// Verify request key
 	if params["key"] == "" || !slices.Contains(config.Config.AuthorizedKeys, params["key"]) {
-		log.Println("Unauthorized request")
+		log.Println("Unauthorized request from " + r.RemoteAddr)
 		w.WriteHeader(http.StatusUnauthorized)
 		return
 	}
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		fmt.Println(err)
+		log.Println("Error reading request body: " + err.Error())
 		return
 	}
 
@@ -34,7 +33,7 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 	var dsEvent types.DocuSealEvent
 	err = json.Unmarshal(body, &dsEvent)
 	if err != nil {
-		fmt.Println(err)
+		log.Println("Error unmarshalling request body: " + err.Error())
 		return
 	}
 

@@ -203,11 +203,13 @@ func SendWebhook(payload types.DiscordMessageWebhookPayload) error {
 
 	body, err := json.Marshal(payload)
 	if err != nil {
+		log.Println("Error marshalling webhook payload: " + err.Error())
 		return err
 	}
 
 	r, err := http.NewRequest("POST", webhookURL, bytes.NewBuffer(body))
 	if err != nil {
+		log.Println("Error creating webhook request: " + err.Error())
 		return err
 	}
 
@@ -216,7 +218,12 @@ func SendWebhook(payload types.DiscordMessageWebhookPayload) error {
 	client := &http.Client{}
 	resp, err := client.Do(r)
 	if err != nil {
+		log.Println("Error sending webhook: " + err.Error())
 		return err
+	}
+	if resp.StatusCode != http.StatusOK {
+		log.Println("Error sending webhook: " + resp.Status)
+		return fmt.Errorf("webhook returned status code %d", resp.StatusCode)
 	}
 	defer resp.Body.Close()
 
