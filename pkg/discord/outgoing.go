@@ -20,11 +20,15 @@ func AssembleMessage(event types.DocuSealEvent) error {
 	switch event.EventType {
 	case types.DocuSealEventTypeFormViewed:
 		addViewEmbed(event, &payload)
+		log.Println("Handling form.started event from " + event.Data.IP)
 	case types.DocuSealEventTypeFormStarted:
+		log.Println("Handling form.started event from " + event.Data.IP)
 		addStartEmbed(event, &payload)
 	case types.DocuSealEventTypeFormCompleted:
+		log.Println("Handling form.completed event from " + event.Data.IP)
 		addCompleteEmbed(event, &payload)
 	case types.DocuSealEventTypeFormDeclined:
+		log.Println("Handling form.declined event from " + event.Data.IP)
 		addDeclineEmbed(event, &payload)
 	default:
 		return fmt.Errorf("unknown event type: %s", event.EventType)
