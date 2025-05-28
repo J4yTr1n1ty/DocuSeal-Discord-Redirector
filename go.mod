@@ -1,6 +1,6 @@
 module github.com/J4yTr1n1ty/DocuSeal-Discord-Redirector
 
-go 1.24.3
+go 1.21
 
 require (
 	github.com/gorilla/mux v1.8.1

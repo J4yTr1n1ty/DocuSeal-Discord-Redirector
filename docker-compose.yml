@@ -1,0 +1,31 @@
+---
+services:
+  docuseal-discord-redirector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: docuseal-discord-redirector
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - KEYS_FILE=/app/config/keys.txt
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+    env_file:
+      - .env
+    volumes:
+      # Mount keys file from host
+      - ./keys.txt:/app/config/keys.txt:ro
+      # Optional: mount custom .env file
+      - ./.env:/app/.env:ro
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:8080/status",
+        ]

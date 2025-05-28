@@ -1,0 +1,39 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+LICENSE
+
+# Environment files (will be mounted)
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+tmp/
+*.tmp
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Air development tool
+.air.toml
+
+# Build artifacts (if any exist locally)
+main
+*.exe
