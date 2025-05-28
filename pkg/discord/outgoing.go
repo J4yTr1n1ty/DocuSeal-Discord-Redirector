@@ -225,7 +225,7 @@ func SendWebhook(payload types.DiscordMessageWebhookPayload) error {
 	if resp.StatusCode != http.StatusOK {
 		defer resp.Body.Close()
 		body, _ := io.ReadAll(resp.Body)
-		log.Println("Error sending webhook: " + string(body) + " (" + string(resp.StatusCode) + ")")
+		log.Println("Error sending webhook: " + string(body) + " (" + resp.Status + ")")
 		return fmt.Errorf("webhook returned status code %d", resp.StatusCode)
 	}
 	defer resp.Body.Close()
