@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"strings"
@@ -222,7 +223,9 @@ func SendWebhook(payload types.DiscordMessageWebhookPayload) error {
 		return err
 	}
 	if resp.StatusCode != http.StatusOK {
-		log.Println("Error sending webhook: " + resp.Status)
+		defer resp.Body.Close()
+		body, _ := io.ReadAll(resp.Body)
+		log.Println("Error sending webhook: " + string(body) + " (" + string(resp.StatusCode) + ")")
 		return fmt.Errorf("webhook returned status code %d", resp.StatusCode)
 	}
 	defer resp.Body.Close()
